@@ -47,12 +47,14 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || 'An unknown error occurred!' });
 });
 
+const PORT = process.env.PORT || 5000;
+
 mongoose
   .connect(
     `mongodb+srv://shashankgva:Gk8T5m3GgzfcHUcV@cluster0.zj5hh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
   )
   .then(() => {
-    app.listen(5000);
+    app.listen(PORT);
   })
   .catch((err) => {
     console.log(err);
