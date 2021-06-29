@@ -25,7 +25,7 @@ async function getCoordsForAddress(address) {
     throw error;
   }
 
-  let coordinates = '';
+  let coordinates = { lng: 13.50277319366985, lat: 75.08979324949466 };
   if (data.results && data.results[0]) {
     coordinates = data.results[0].geometry.location;
   }

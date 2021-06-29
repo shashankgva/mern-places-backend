@@ -56,9 +56,9 @@ const getPlacesByUserId = async (req, res, next) => {
   }
 
   res.json({
-    places: userWithPlaces.places.map(place =>
+    places: userWithPlaces.places.map((place) =>
       place.toObject({ getters: true })
-    )
+    ),
   });
 };
 
@@ -85,13 +85,14 @@ const createPlace = async (req, res, next) => {
     address,
     location: coordinates,
     image: req.file.path,
-    creator: req.userData.userId
+    creator: req.userData.userId,
   });
 
   let user;
   try {
     user = await User.findById(req.userData.userId);
   } catch (err) {
+    console.log(`Place crete error`, err);
     const error = new HttpError(
       'Creating place failed, please try again.',
       500
@@ -114,6 +115,7 @@ const createPlace = async (req, res, next) => {
     await user.save({ session: sess });
     await sess.commitTransaction();
   } catch (err) {
+    console.log(`Place crete error`, err);
     const error = new HttpError(
       'Creating place failed, please try again.',
       500
@@ -211,7 +213,7 @@ const deletePlace = async (req, res, next) => {
     return next(error);
   }
 
-  fs.unlink(imagePath, err => {
+  fs.unlink(imagePath, (err) => {
     console.log(err);
   });
 
