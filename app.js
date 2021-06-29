@@ -56,8 +56,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    `mongodb+srv://shashankgva:Gk8T5m3GgzfcHUcV@cluster0.zj5hh.mongodb.net/mern-places-app?retryWrites=true&w=majority`,
-    { useNewUrlParser: true }
+    `mongodb+srv://shashankgva:Gk8T5m3GgzfcHUcV@cluster0.zj5hh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
   )
   .then(() => {
     app.listen(8080);
